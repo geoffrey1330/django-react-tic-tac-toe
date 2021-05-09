@@ -1,0 +1,272 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font: 1rem / 1.2 sans-serif;
+  background-color: #f1f1f1;
+}
+
+.view {
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column;
+  padding: 32px;
+  margin: 32px auto 0;
+  max-width: 520px;
+  background-color: #fff;
+  box-shadow: 0 5px 10px hsla(0, 0%, 0%, .2);
+  border-radius: 4px;
+}
+.view-dark {
+ 
+  background-color: #111;
+  
+}
+
+/*board */
+.board-back-link {
+	display: inline-block;
+	margin-bottom: 16px;
+	font-size: 15px;
+	text-decoration: none;
+	color: #111;
+	border-bottom: 1px solid #111;
+}
+
+.board-back-link-dark {
+	
+	color: white;
+	border-bottom: 1px solid #fff;
+}
+
+.board-wrapper {
+  display: flex;
+	flex-flow: row wrap;
+}
+
+.board {
+	width: 250px;
+}
+
+.board-row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.board-heading {
+	margin-top: 0;
+	margin-bottom: 8px;
+	font: 700 18px / 1.618 sans-serif;
+	list-style-type: none;
+}
+
+.board-heading-dark {
+	color: white;
+}
+
+.board-history {
+	margin-left: 18px;
+}
+
+.board-history-list {
+	padding: 0;
+	margin: 0;
+	font-size: 15px;
+	color: var(--color-gray-dark);
+	list-style-type: none;
+}
+
+.board-history-list {
+color: white;
+}
+
+.board__btn {
+	margin: 32px auto 0;
+}
+
+/* box */
+.board__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: calc(250px / 3);
+  height: calc(250px / 3);
+  font-size: 32px;
+  color: #111;
+  background-color: #fff;
+  border: 1px solid #aaa;
+}
+
+.board__box-dark {
+  
+  color: white;
+  background-color: #111;
+  border: 1px solid #aaa;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  padding: 12px 18px;
+  font-size: 15px;
+  color: #fff;
+  background-color: var(--color-primary);
+  border: 0;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all .25s ease-out;
+}
+
+.btn:hover {
+  background-color: hsl(198, 74%, 34%);
+}
+
+/* Scoreboard */
+.scoreboard__title {
+  text-align: center;
+}
+
+.scoreboard__title-dark{
+  color: white;
+}
+
+.scoreboard__subtitle {
+  margin-top: 32px;
+  font-size: 18px;
+}
+
+.scoreboard__subtitle-dark {
+  color: white;
+}
+
+.scoreboard__names {
+  display: flex;
+}
+
+.scoreboard__name-box {
+  width: calc(50% - 18px);
+}
+
+.scoreboard__name-box-dark {
+  color: white;
+}
+
+.scoreboard__name-box + .scoreboard__name-box {
+  margin-left: 36px;
+}
+
+.scoreboard__input {
+  margin-top: 8px;
+  width: 100%;
+  font-size: 16px;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid var(--color-gray);
+  border-left: 0;
+  transition: all .25s ease-out;
+}
+
+.scoreboard__input-dark {
+  background-color: #111;
+  color: white;
+}
+
+.scoreboard__input:focus,
+.scoreboard__input:hover {
+  border-bottom-color: var(--color-primary);
+  outline: 0;
+}
+.p-dark{
+  color: white;
+}
+.scoreboard__btn {
+  margin: 32px auto 0;
+}
+
+.scoreboard__list {
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+  color: var(--color-gray-dark);
+  list-style-type: none;
+}
+
+.scoreboard__list-dark {
+  color:white;
+}
+
+.scoreboard__list li + li {
+  margin-top: 6px;
+}
+
+/* Variables */
+:root {
+  --color-primary: hsl(198, 74%, 54%);
+  --color-gray: #ddd;
+  --color-gray-dark: #666;
+}
+/* The switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 0 2em 0 4em;
+}
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 10px;
+}
+
+.slider:before {
+  position: absolute;
+  content: url(../images/sun.png);
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  padding-left: 3px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px 0 rgb(228 202 16 / 88%),
+    0 4px 8px 0 rgba(17, 22, 26, 0.08), 0 8px 16px 0 rgba(17, 22, 26, 0.08);
+}
+
+input:checked + .slider {
+  background-color: white;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #ccc;
+}
+
+input:checked + .slider:before {
+  content: url(../images//moon.png);
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  border-radius: 10px;
+  box-shadow: 0 0 8px 0 rgb(228 202 16 / 88%),
+    0 4px 8px 0 rgba(17, 22, 26, 0.08), 0 8px 16px 0 rgba(17, 22, 26, 0.08);
+}
+
