@@ -70,7 +70,7 @@ export class Scoreboard extends React.Component {
               : "scoreboard__title"
           }
         >
-          Welcome
+          Welcome to Jedah
         </h1>
         {/* dark mode switch */}
         <label className="switch">

@@ -22,38 +22,35 @@ body {
   margin: 32px auto 0;
   max-width: 520px;
   background-color: #fff;
-  box-shadow: 0 5px 10px hsla(0, 0%, 0%, .2);
+  box-shadow: 0 5px 10px hsla(0, 0%, 0%, 0.2);
   border-radius: 4px;
 }
 .view-dark {
- 
   background-color: #111;
-  
 }
 
 /*board */
 .board-back-link {
-	display: inline-block;
-	margin-bottom: 16px;
-	font-size: 15px;
-	text-decoration: none;
-	color: #111;
-	border-bottom: 1px solid #111;
+  display: inline-block;
+  margin-bottom: 16px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #111;
+  border-bottom: 1px solid #111;
 }
 
 .board-back-link-dark {
-	
-	color: white;
-	border-bottom: 1px solid #fff;
+  color: white;
+  border-bottom: 1px solid #fff;
 }
 
 .board-wrapper {
   display: flex;
-	flex-flow: row wrap;
+  flex-flow: row wrap;
 }
 
 .board {
-	width: 250px;
+  width: 250px;
 }
 
 .board-row {
@@ -62,34 +59,34 @@ body {
 }
 
 .board-heading {
-	margin-top: 0;
-	margin-bottom: 8px;
-	font: 700 18px / 1.618 sans-serif;
-	list-style-type: none;
+  margin-top: 0;
+  margin-bottom: 8px;
+  font: 700 18px / 1.618 sans-serif;
+  list-style-type: none;
 }
 
 .board-heading-dark {
-	color: white;
+  color: white;
 }
 
 .board-history {
-	margin-left: 18px;
+  margin-left: 18px;
 }
 
 .board-history-list {
-	padding: 0;
-	margin: 0;
-	font-size: 15px;
-	color: var(--color-gray-dark);
-	list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+  color: var(--color-gray-dark);
+  list-style-type: none;
 }
 
-.board-history-list {
-color: white;
+.board-history-list-dark {
+  color: white;
 }
 
 .board__btn {
-	margin: 32px auto 0;
+  margin: 32px auto 0;
 }
 
 /* box */
@@ -107,7 +104,6 @@ color: white;
 }
 
 .board__box-dark {
-  
   color: white;
   background-color: #111;
   border: 1px solid #aaa;
@@ -123,7 +119,7 @@ color: white;
   border: 0;
   border-radius: 4px;
   text-decoration: none;
-  transition: all .25s ease-out;
+  transition: all 0.25s ease-out;
 }
 
 .btn:hover {
@@ -135,7 +131,7 @@ color: white;
   text-align: center;
 }
 
-.scoreboard__title-dark{
+.scoreboard__title-dark {
   color: white;
 }
 
@@ -172,7 +168,7 @@ color: white;
   border-right: 0;
   border-bottom: 1px solid var(--color-gray);
   border-left: 0;
-  transition: all .25s ease-out;
+  transition: all 0.25s ease-out;
 }
 
 .scoreboard__input-dark {
@@ -185,7 +181,7 @@ color: white;
   border-bottom-color: var(--color-primary);
   outline: 0;
 }
-.p-dark{
+.p-dark {
   color: white;
 }
 .scoreboard__btn {
@@ -201,7 +197,7 @@ color: white;
 }
 
 .scoreboard__list-dark {
-  color:white;
+  color: white;
 }
 
 .scoreboard__list li + li {
@@ -269,4 +265,3 @@ input:checked + .slider:before {
   box-shadow: 0 0 8px 0 rgb(228 202 16 / 88%),
     0 4px 8px 0 rgba(17, 22, 26, 0.08), 0 8px 16px 0 rgba(17, 22, 26, 0.08);
 }
-
