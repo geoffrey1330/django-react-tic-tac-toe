@@ -7,7 +7,8 @@ Tic Tack Toe game built with React and Django framework.
 ### Features
 - 3x3 game grid
 - Persistent scoreboard (data stored in SQL database)
-- Two human players with editable names
+- multiplayer with django channels and websockets
+- Two human players with different device
 
 ### Prerequisites:
 - [Python 3](https://www.python.org) (>=3.7)
