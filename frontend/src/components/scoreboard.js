@@ -1,4 +1,5 @@
 import React from "react";
+import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -111,7 +112,7 @@ export class Scoreboard extends React.Component {
               }
               type="text"
               value={this.state.playerOneName}
-              onChange={this.handleInputChange}
+              //onChange={this.handleInputChange}
               data-name="playerOneName"
             />
           </div>
@@ -134,7 +135,7 @@ export class Scoreboard extends React.Component {
               }
               type="text"
               value={this.state.playerTwoName}
-              onChange={this.handleInputChange}
+              // onChange={this.handleInputChange}
               data-name="playerTwoName"
             />
           </div>

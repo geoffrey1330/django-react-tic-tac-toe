@@ -40,6 +40,14 @@ class TicTacToeConsumer(AsyncJsonWebsocketConsumer):
                 "event": "MOVE"
             })
 
+        if event == 'ONSTART':
+            # Send message to room group
+            await self.channel_layer.group_send(self.room_group_name, {
+                'type': 'send_message',
+                'message': message,
+                "event": "ONSTART"
+            })
+
         if event == 'START':
             # Send message to room group
             await self.channel_layer.group_send(self.room_group_name, {

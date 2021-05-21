@@ -49,6 +49,9 @@ export class Board extends React.Component {
         player: this.state.xIsNext
           ? this.state.playerOneName
           : this.state.playerTwoName,
+
+        xIsNext: this.state.xIsNext,
+        history: this.state.history,
       },
     };
 
@@ -69,6 +72,15 @@ export class Board extends React.Component {
       history: [],
       xIsNext: true,
     });
+    /////////
+
+    let data = {
+      event: "END",
+      message: "",
+    };
+
+    this.client.send(JSON.stringify(data));
+    ///////
   };
 
   async componentDidMount() {
@@ -99,7 +111,7 @@ export class Board extends React.Component {
       }, 1000);
     };
 
-    this.client.onmessage = function (e) {
+    this.client.onmessage = (e) => {
       let data = JSON.parse(e.data);
       data = data["payload"];
       let message = data["message"];
@@ -109,7 +121,6 @@ export class Board extends React.Component {
           this.handleBoardRestart();
           break;
         case "END":
-          alert(message);
           this.handleBoardRestart();
           break;
         case "MOVE":
@@ -124,8 +135,10 @@ export class Board extends React.Component {
 
             this.setState((state) => ({
               boxes: message["index"],
+              xIsNext: !message["xIsNext"],
+              history: message["history"],
             }));
-            console.log(message["player"]);
+            console.log(message["index"]);
           }
           break;
         default:
