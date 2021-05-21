@@ -1,5 +1,7 @@
 # Tic Tack Toe game
 
+# [Play game](https://jedah.netlify.app/) 
+
 Tic Tack Toe game built with React and Django framework.
 
 ### Features
