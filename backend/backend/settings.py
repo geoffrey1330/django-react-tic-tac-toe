@@ -25,10 +25,7 @@ SECRET_KEY = "cle2q2j*3=4$-s3j0033j)s&6f$#&2h_v6j=#n4&vv6(*x@ydr"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "https://jedah.herokuapp.com/",
-    "http://127.0.0.1:8000",
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "corsheaders",
     "rest_framework",
+    "channels",
     "tictactoe",
 ]
 
@@ -80,6 +78,35 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
+# WSGI_APPLICATION = 'tic_tac_toe.wsgi.application'
+# Channels
+ASGI_APPLICATION = "backend.asgi.application"
+CHANNEL_LAYERS = {
+    'default': {
+        # Method 1: Via redis lab
+        # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        # 'CONFIG': {
+        #     "hosts": [
+        #       'redis://h:le16Dn6dYwGHOZLF9vWxySxmQSIwE4Zz@redis-12573.c99.us-east-1-4.ec2.cloud.redislabs.com:12573'
+        #     ],
+        # }
+
+        # Method 2: Via local redis
+        # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        # 'CONFIG': {
+        #     # "hosts": [('127.0.0.1', 6379)],
+        # },
+
+        # Method 3: Via In-memory channel layer
+
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+
+    },
+}
+
+# Database
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
     "default": {
@@ -125,7 +152,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-# STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 
 # Whitelist localhost:3000 because that's where frontend will be served
 
@@ -134,3 +161,11 @@ CORS_ORIGIN_WHITELIST = (
     "http://localhost:8000",
     "http://localhost:8080",
 )
+
+# Django Channels settings
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "asgiref.inmemory.ChannelLayer",
+#         "ROUTING": "game.routing.channel_routing",
+#     },
+# }

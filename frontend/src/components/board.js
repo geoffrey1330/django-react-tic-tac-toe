@@ -1,4 +1,5 @@
 import React from "react";
+import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -7,17 +8,18 @@ import { Box } from "./board-box";
 import * as utils from "../utils/functions";
 
 export class Board extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    boxes: Array(9).fill(null),
+    history: [],
+    playerOneName: this.props.state.playerOneName,
+    playerTwoName: this.props.state.playerTwoName,
+    xIsNext: true,
+    room: "venue",
+  };
 
-    this.state = {
-      boxes: Array(9).fill(null),
-      history: [],
-      playerOneName: this.props.state.playerOneName,
-      playerTwoName: this.props.state.playerTwoName,
-      xIsNext: true,
-    };
-  }
+  client = new W3CWebSocket(
+    "ws://127.0.0.1:8000/ws/play/" + this.state.room + "/"
+  );
 
   handleBoxClick(index) {
     const boxes = this.state.boxes.slice();
@@ -38,6 +40,22 @@ export class Board extends React.Component {
       this.state.xIsNext ? this.state.playerOneName : this.state.playerTwoName
     );
 
+    /////////
+
+    let data = {
+      event: "MOVE",
+      message: {
+        index: boxes,
+        player: this.state.xIsNext
+          ? this.state.playerOneName
+          : this.state.playerTwoName,
+      },
+    };
+
+    console.log(index);
+    this.client.send(JSON.stringify(data));
+    ///////
+
     this.setState({
       boxes: boxes,
       history: history,
@@ -52,9 +70,70 @@ export class Board extends React.Component {
       xIsNext: true,
     });
   };
+
   async componentDidMount() {
+    function connect() {
+      this.client.onopen = () => {
+        /////////
+
+        let data = {
+          event: "START",
+          message: "",
+        };
+
+        this.client.send(JSON.stringify(data));
+        ///////
+        console.log("WebSocket Client Connected");
+      };
+    }
+
     utils.findWinner(this.state.boxes);
+
+    this.client.onclose = function (e) {
+      console.log(
+        "Socket is closed. Reconnect will be attempted in 1 second.",
+        e.reason
+      );
+      setTimeout(function () {
+        connect();
+      }, 1000);
+    };
+
+    this.client.onmessage = function (e) {
+      let data = JSON.parse(e.data);
+      data = data["payload"];
+      let message = data["message"];
+      let event = data["event"];
+      switch (event) {
+        case "START":
+          this.handleBoardRestart();
+          break;
+        case "END":
+          alert(message);
+          this.handleBoardRestart();
+          break;
+        case "MOVE":
+          if (message["player"]) {
+            // make_move(message["index"], message["player"]);
+            //////////this.handleBoxClick(message["index"]);
+            // this.setState({
+            //   boxes: message["index"],
+            // });
+
+            //document.getElementById("alert_move").style.display = "inline";
+
+            this.setState((state) => ({
+              boxes: message["index"],
+            }));
+            console.log(message["player"]);
+          }
+          break;
+        default:
+          console.log("No event");
+      }
+    };
   }
+
   render() {
     const winner = utils.findWinner(this.state.boxes);
     const isFilled = utils.areAllBoxesClicked(this.state.boxes);

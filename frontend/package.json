@@ -12,7 +12,8 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "^4.0.3",
     "shortid": "^2.2.14",
-    "sweetalert2": "^8.14.0"
+    "sweetalert2": "^8.14.0",
+    "websocket": "^1.0.32"
   },
   "scripts": {
     "start": "react-scripts start",
