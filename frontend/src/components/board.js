@@ -14,7 +14,7 @@ export class Board extends React.Component {
     playerOneName: this.props.state.playerOneName,
     playerTwoName: this.props.state.playerTwoName,
     xIsNext: true,
-    room: "venue",
+    room: this.props.state.roomcode,
   };
 
   client = new W3CWebSocket(
@@ -22,6 +22,7 @@ export class Board extends React.Component {
   );
 
   handleBoxClick(index) {
+    console.log(this.state.room);
     const boxes = this.state.boxes.slice();
 
     let history = this.state.history;

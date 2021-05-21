@@ -203,7 +203,9 @@ body {
 .scoreboard__list li + li {
   margin-top: 6px;
 }
-
+.danger {
+  color: red;
+}
 /* Variables */
 :root {
   --color-primary: hsl(198, 74%, 54%);

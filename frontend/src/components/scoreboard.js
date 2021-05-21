@@ -11,11 +11,13 @@ export class Scoreboard extends React.Component {
       playerOneName: this.props.state.playerOneName,
       playerTwoName: this.props.state.playerTwoName,
       scoreboard: [],
+      roomcode: this.props.state.roomcode,
     };
   }
 
   async componentDidMount() {
     this.refreshList();
+    console.log(this.state.roomcode.length);
   }
 
   refreshList = () => {
@@ -38,7 +40,7 @@ export class Scoreboard extends React.Component {
 
     let stateKey = event.target.dataset.name;
     let stateValue = event.target.value;
-
+    console.log(this.state.roomcode);
     this.setState({
       [stateKey]: stateValue,
     });
@@ -92,6 +94,30 @@ export class Scoreboard extends React.Component {
         >
           Would you like to play a game?
         </h2>
+        <div
+          className={
+            this.props.darkMode
+              ? "scoreboard__name-box scoreboard__name-box-dark"
+              : "scoreboard__name-box"
+          }
+        >
+          <label htmlFor="playerTwoName">gameid:</label>
+
+          <input
+            id="roomcode"
+            className={
+              this.props.darkMode
+                ? "scoreboard__input scoreboard__input-dark"
+                : "scoreboard__input"
+            }
+            type="text"
+            value={this.state.roomcode}
+            placeholder="input 4 digit gameid"
+            onChange={this.handleInputChange}
+            data-name="roomcode"
+          />
+        </div>
+        <br></br>
 
         <div className="scoreboard__names">
           <div
@@ -113,6 +139,7 @@ export class Scoreboard extends React.Component {
               type="text"
               value={this.state.playerOneName}
               //onChange={this.handleInputChange}
+              disabled={true}
               data-name="playerOneName"
             />
           </div>
@@ -136,18 +163,30 @@ export class Scoreboard extends React.Component {
               type="text"
               value={this.state.playerTwoName}
               // onChange={this.handleInputChange}
+              disabled={true}
               data-name="playerTwoName"
             />
           </div>
         </div>
-
-        <Link
-          to="/board"
-          onClick={this.handleNameValidation}
-          className="scoreboard__btn btn"
-        >
-          Start new game
-        </Link>
+        {this.state.roomcode.length <= 3 ? (
+          <h2
+            className={
+              this.props.darkMode
+                ? "scoreboard__subtitle scoreboard__subtitle-dark danger"
+                : "scoreboard__subtitle danger"
+            }
+          >
+            input your 4 digit gameid to continue
+          </h2>
+        ) : (
+          <Link
+            to="/board"
+            onClick={this.handleNameValidation}
+            className="scoreboard__btn btn"
+          >
+            Start new game
+          </Link>
+        )}
 
         <h2
           className={

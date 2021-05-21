@@ -13,6 +13,7 @@ class App extends React.Component {
     darkMode: localStorage.getItem("darkmode")
       ? JSON.parse(localStorage.getItem("darkmode"))
       : false,
+    roomcode: "",
   };
 
   handlePlayerNameChange = (stateKey, stateValue) => {
@@ -39,6 +40,7 @@ class App extends React.Component {
               nameChangeHandler={this.handlePlayerNameChange}
               onDarkModeToggle={this.handleDarkModeToggle}
               darkMode={this.state.darkMode}
+              roomcode={this.state.roomcode}
             />
           )}
         />
@@ -51,6 +53,7 @@ class App extends React.Component {
               nameChangeHandler={this.handlePlayerNameChange}
               onDarkModeToggle={this.handleDarkModeToggle}
               darkMode={this.state.darkMode}
+              roomcode={this.state.roomcode}
             />
           )}
         />
