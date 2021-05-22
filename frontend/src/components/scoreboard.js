@@ -19,7 +19,6 @@ export class Scoreboard extends React.Component {
 
   async componentDidMount() {
     this.refreshList();
-    console.log(this.state.roomcode.length);
   }
 
   refreshList = () => {
@@ -72,7 +71,7 @@ export class Scoreboard extends React.Component {
     Swal.fire({
       position: "top",
       allowOutsideClick: false,
-      title: "Share this room ID with your friend",
+      title: "Share this Game ID with your friend",
       text: roomId,
       width: 275,
       padding: "0.7em",
@@ -97,7 +96,7 @@ export class Scoreboard extends React.Component {
       position: "top",
       input: "text",
       allowOutsideClick: false,
-      inputPlaceholder: "Enter the room id",
+      inputPlaceholder: "Enter the Game ID",
       showCancelButton: true,
       confirmButtonColor: "rgb(208,33,41)",
       confirmButtonText: "OK",
@@ -233,7 +232,7 @@ export class Scoreboard extends React.Component {
           </div>
         </div>
 
-        {this.state.roomcode.length <= 3 ? (
+        {this.state.roomcode.length <= 0 ? (
           <div className="button-container">
             <button
               className="create-button scoreboard__btn btn "

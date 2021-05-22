@@ -1,6 +1,6 @@
 import React from "react";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import { Box } from "./board-box";
@@ -56,7 +56,6 @@ export class Board extends React.Component {
       },
     };
 
-    console.log(index);
     this.client.send(JSON.stringify(data));
     ///////
 
@@ -84,20 +83,26 @@ export class Board extends React.Component {
   };
 
   async componentDidMount() {
-    console.log(this.state.room);
+    console.log(this.client);
+
     function connect() {
-      this.client.onopen = () => {
-        /////////
+      try {
+        this.client.onopen = () => {
+          /////////
 
-        let data = {
-          event: "START",
-          message: "",
+          let data = {
+            event: "START",
+            message: "",
+          };
+
+          this.client.send(JSON.stringify(data));
+          ///////
+          console.log("WebSocket Client Connected");
         };
-
-        this.client.send(JSON.stringify(data));
-        ///////
-        console.log("WebSocket Client Connected");
-      };
+      } catch (err) {
+        console.log(err.message);
+        <Redirect to="/" />;
+      }
     }
 
     utils.findWinner(this.state.boxes);
