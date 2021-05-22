@@ -267,3 +267,20 @@ input:checked + .slider:before {
   box-shadow: 0 0 8px 0 rgb(228 202 16 / 88%),
     0 4px 8px 0 rgba(17, 22, 26, 0.08), 0 8px 16px 0 rgba(17, 22, 26, 0.08);
 }
+
+/*swal box*/
+
+.button-container {
+  margin-left: 1em;
+}
+
+.create-button {
+  margin-right: 5px;
+  width: 4.5em;
+  height: 2em;
+}
+
+.join-button {
+  width: 4.5em;
+  height: 2em;
+}

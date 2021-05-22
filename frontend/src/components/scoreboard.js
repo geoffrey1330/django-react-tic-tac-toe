@@ -1,7 +1,9 @@
 import React from "react";
-import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
+import Swal from "sweetalert2";
+import shortid from "shortid";
 
 export class Scoreboard extends React.Component {
   constructor(props) {
@@ -22,7 +24,7 @@ export class Scoreboard extends React.Component {
 
   refreshList = () => {
     axios
-      .get("http://jedah.herokuapp.com/api/historys")
+      .get("https://jedah.herokuapp.com/api/historys")
       .then((response) => {
         Promise.all(
           response.data.map((historyItem) => {
@@ -58,7 +60,64 @@ export class Scoreboard extends React.Component {
       event.preventDefault();
     }
   };
+  ////////////////////////////////////
+  // Open the modal
+  // Create a room channel
+  onPressCreate = (e) => {
+    // Create a random name for the channel
+    const roomId = shortid.generate().substring(0, 5);
 
+    // Open the modal
+    Swal.fire({
+      position: "top",
+      allowOutsideClick: false,
+      title: "Share this room ID with your friend",
+      text: roomId,
+      width: 275,
+      padding: "0.7em",
+      // Custom CSS
+      customClass: {
+        heightAuto: false,
+        title: "title-class",
+        popup: "popup-class",
+        confirmButton: "button-class",
+      },
+    });
+
+    this.setState({
+      roomcode: roomId,
+    });
+  };
+
+  // The 'Join' button was pressed
+  onPressJoin = (e) => {
+    Swal.fire({
+      position: "top",
+      input: "text",
+      allowOutsideClick: false,
+      inputPlaceholder: "Enter the room id",
+      showCancelButton: true,
+      confirmButtonColor: "rgb(208,33,41)",
+      confirmButtonText: "OK",
+      width: 275,
+      padding: "0.7em",
+      customClass: {
+        heightAuto: false,
+        popup: "popup-class",
+        confirmButton: "join-button-class ",
+        cancelButton: "join-button-class",
+      },
+    }).then((result) => {
+      // Check if the user typed a value in the input field
+      if (result.value) {
+        console.log(result.value);
+        this.setState({
+          roomcode: result.value,
+        });
+      }
+    });
+  };
+  ///////////////////////////////////
   render() {
     return (
       <div
@@ -115,6 +174,7 @@ export class Scoreboard extends React.Component {
             placeholder="input 4 digit gameid"
             onChange={this.handleInputChange}
             data-name="roomcode"
+            disabled={this.state.roomcode.length > 3 ? true : false}
           />
         </div>
         <br></br>
@@ -168,6 +228,24 @@ export class Scoreboard extends React.Component {
             />
           </div>
         </div>
+
+        <div className="button-container">
+          <button
+            className="create-button scoreboard__btn btn "
+            onClick={(e) => this.onPressCreate()}
+          >
+            {" "}
+            Create
+          </button>
+          <button
+            className="join-button scoreboard__btn btn"
+            onClick={(e) => this.onPressJoin()}
+          >
+            {" "}
+            Join
+          </button>
+        </div>
+
         {this.state.roomcode.length <= 3 ? (
           <h2
             className={

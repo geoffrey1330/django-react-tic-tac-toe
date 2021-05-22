@@ -77,7 +77,6 @@ export class Board extends React.Component {
 
     let data = {
       event: "END",
-      message: "",
     };
 
     this.client.send(JSON.stringify(data));
@@ -121,9 +120,7 @@ export class Board extends React.Component {
         case "START":
           this.handleBoardRestart();
           break;
-        case "END":
-          this.handleBoardRestart();
-          break;
+
         case "MOVE":
           if (message["player"]) {
             // make_move(message["index"], message["player"]);
@@ -160,7 +157,7 @@ export class Board extends React.Component {
         winner === "x" ? this.state.playerOneName : this.state.playerTwoName
       }!`;
 
-      axios.post("http://jedah.herokuapp.com/api/historys/", {
+      axios.post("https://jedah.herokuapp.com/api/historys/", {
         title: `${
           winner === "x" ? this.state.playerOneName : this.state.playerTwoName
         } won`,
@@ -169,7 +166,7 @@ export class Board extends React.Component {
     } else if (!winner && isFilled) {
       status = "Game drawn!";
 
-      axios.post("http://jedah.herokuapp.com/api/historys/", {
+      axios.post("https://jedah.herokuapp.com/api/historys/", {
         title: `${"Game drawn"}`,
         text: "",
       });

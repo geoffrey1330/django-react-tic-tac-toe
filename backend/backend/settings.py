@@ -82,28 +82,28 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # WSGI_APPLICATION = 'tic_tac_toe.wsgi.application'
 # Channels
 ASGI_APPLICATION = "backend.asgi.application"
-CHANNEL_LAYERS = {
-    'default': {
-        # Method 1: Via redis lab
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [
-                'redis://h:le16Dn6dYwGHOZLF9vWxySxmQSIwE4Zz@redis-12573.c99.us-east-1-4.ec2.cloud.redislabs.com:12573'
-            ],
-        }
+# CHANNEL_LAYERS = {
+#     'default': {
+#         # Method 1: Via redis lab
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [
+#                 'redis://h:le16Dn6dYwGHOZLF9vWxySxmQSIwE4Zz@redis-12573.c99.us-east-1-4.ec2.cloud.redislabs.com:12573'
+#             ],
+#         }
 
-        # Method 2: Via local redis
-        # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        # 'CONFIG': {
-        #     "hosts": [('127.0.0.1', 6379)],
-        # },
+#         # Method 2: Via local redis
+#         # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         # 'CONFIG': {
+#         #     "hosts": [('127.0.0.1', 6379)],
+#         # },
 
-        # Method 3: Via In-memory channel layer
+#         # Method 3: Via In-memory channel layer
 
-        #     "BACKEND": "channels.layers.InMemoryChannelLayer",
+#         #     "BACKEND": "channels.layers.InMemoryChannelLayer",
 
-    },
-}
+#     },
+# }
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -165,9 +165,17 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 # Django Channels settings
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "asgiref.inmemory.ChannelLayer",
-#         "ROUTING": "game.routing.channel_routing",
-#     },
-# }
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+
+        },
+    },
+}
+""" CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+} """
