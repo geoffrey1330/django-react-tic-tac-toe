@@ -18,7 +18,7 @@ export class Board extends React.Component {
   };
 
   client = new W3CWebSocket(
-    "ws://jedah.herokuapp.com/ws/play/" + this.state.room + "/"
+    "ws://localhost:8000/ws/play/" + this.state.room + "/"
   );
 
   handleBoxClick(index) {
@@ -84,6 +84,7 @@ export class Board extends React.Component {
   };
 
   async componentDidMount() {
+    console.log(this.state.room);
     function connect() {
       this.client.onopen = () => {
         /////////

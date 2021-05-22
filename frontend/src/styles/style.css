@@ -276,10 +276,11 @@ input:checked + .slider:before {
 
 .create-button {
   margin-right: 5px;
-  width: 4.5em;
-  height: 2em;
+  background-color: rgb(357, 18, 18);
 }
-
+.create-button:hover {
+  background-color: hsl(0, 82%, 44%);
+}
 .join-button {
   width: 4.5em;
   height: 2em;

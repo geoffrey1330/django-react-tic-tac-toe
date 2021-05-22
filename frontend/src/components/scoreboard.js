@@ -48,6 +48,7 @@ export class Scoreboard extends React.Component {
     });
 
     this.props.nameChangeHandler(stateKey, stateValue);
+    console.log("me");
   };
 
   handleNameValidation = (event) => {
@@ -87,6 +88,7 @@ export class Scoreboard extends React.Component {
     this.setState({
       roomcode: roomId,
     });
+    this.props.nameChangeHandler("roomcode", roomId);
   };
 
   // The 'Join' button was pressed
@@ -114,6 +116,7 @@ export class Scoreboard extends React.Component {
         this.setState({
           roomcode: result.value,
         });
+        this.props.nameChangeHandler("roomcode", result.value);
       }
     });
   };
@@ -175,6 +178,7 @@ export class Scoreboard extends React.Component {
             onChange={this.handleInputChange}
             data-name="roomcode"
             disabled={this.state.roomcode.length > 3 ? true : false}
+            hidden={true}
           />
         </div>
         <br></br>
@@ -229,33 +233,23 @@ export class Scoreboard extends React.Component {
           </div>
         </div>
 
-        <div className="button-container">
-          <button
-            className="create-button scoreboard__btn btn "
-            onClick={(e) => this.onPressCreate()}
-          >
-            {" "}
-            Create
-          </button>
-          <button
-            className="join-button scoreboard__btn btn"
-            onClick={(e) => this.onPressJoin()}
-          >
-            {" "}
-            Join
-          </button>
-        </div>
-
         {this.state.roomcode.length <= 3 ? (
-          <h2
-            className={
-              this.props.darkMode
-                ? "scoreboard__subtitle scoreboard__subtitle-dark info"
-                : "scoreboard__subtitle danger info"
-            }
-          >
-            input your 4 digit gameid to continue
-          </h2>
+          <div className="button-container">
+            <button
+              className="create-button scoreboard__btn btn "
+              onClick={(e) => this.onPressCreate()}
+            >
+              {" "}
+              Create
+            </button>
+            <button
+              className=" scoreboard__btn btn"
+              onClick={(e) => this.onPressJoin()}
+            >
+              {" "}
+              Join
+            </button>
+          </div>
         ) : (
           <Link
             to="/board"
