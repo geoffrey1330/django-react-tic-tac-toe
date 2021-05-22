@@ -285,3 +285,26 @@ input:checked + .slider:before {
   width: 4.5em;
   height: 2em;
 }
+
+.input-class {
+  margin-top: -0.1em;
+}
+
+.title-class {
+  font-size: 1.5rem;
+}
+
+.popup-class {
+  height: 165px;
+}
+
+.join-button-class {
+  margin: 0.3125em;
+  padding: 0.5em 1.8em;
+  margin-bottom: 1em;
+}
+
+.button-class {
+  margin: 0.3125em;
+  padding: 0.5em 1.8em;
+}
