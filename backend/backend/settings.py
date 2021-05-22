@@ -25,7 +25,7 @@ SECRET_KEY = "cle2q2j*3=4$-s3j0033j)s&6f$#&2h_v6j=#n4&vv6(*x@ydr"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jedah.herokuapp.com']
 
 
 # Application definition

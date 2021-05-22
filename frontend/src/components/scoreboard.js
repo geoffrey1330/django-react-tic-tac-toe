@@ -172,8 +172,8 @@ export class Scoreboard extends React.Component {
           <h2
             className={
               this.props.darkMode
-                ? "scoreboard__subtitle scoreboard__subtitle-dark danger"
-                : "scoreboard__subtitle danger"
+                ? "scoreboard__subtitle scoreboard__subtitle-dark info"
+                : "scoreboard__subtitle danger info"
             }
           >
             input your 4 digit gameid to continue

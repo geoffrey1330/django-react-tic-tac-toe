@@ -203,8 +203,8 @@ body {
 .scoreboard__list li + li {
   margin-top: 6px;
 }
-.danger {
-  color: red;
+.info {
+  color: green;
 }
 /* Variables */
 :root {

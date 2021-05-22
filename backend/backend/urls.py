@@ -22,5 +22,5 @@ router = routers.DefaultRouter()
 router.register(r'historys', views.HistoryView, 'history')
 
 urlpatterns = [
-  path('admin/', admin.site.urls), path('api/', include(router.urls))
+    path('admin/', admin.site.urls), path('api/', include(router.urls))
 ]
