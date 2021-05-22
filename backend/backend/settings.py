@@ -25,7 +25,7 @@ SECRET_KEY = "cle2q2j*3=4$-s3j0033j)s&6f$#&2h_v6j=#n4&vv6(*x@ydr"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['jedah.herokuapp.com']
+ALLOWED_HOSTS = ['jedah.herokuapp.com', '*']
 
 
 # Application definition
@@ -85,22 +85,22 @@ ASGI_APPLICATION = "backend.asgi.application"
 CHANNEL_LAYERS = {
     'default': {
         # Method 1: Via redis lab
-        # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        # 'CONFIG': {
-        #     "hosts": [
-        #       'redis://h:le16Dn6dYwGHOZLF9vWxySxmQSIwE4Zz@redis-12573.c99.us-east-1-4.ec2.cloud.redislabs.com:12573'
-        #     ],
-        # }
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [
+                'redis://h:le16Dn6dYwGHOZLF9vWxySxmQSIwE4Zz@redis-12573.c99.us-east-1-4.ec2.cloud.redislabs.com:12573'
+            ],
+        }
 
         # Method 2: Via local redis
         # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
         # 'CONFIG': {
-        #     # "hosts": [('127.0.0.1', 6379)],
+        #     "hosts": [('127.0.0.1', 6379)],
         # },
 
         # Method 3: Via In-memory channel layer
 
-        "BACKEND": "channels.layers.InMemoryChannelLayer",
+        #     "BACKEND": "channels.layers.InMemoryChannelLayer",
 
     },
 }
@@ -160,6 +160,8 @@ CORS_ORIGIN_WHITELIST = (
     "http://localhost:3000",
     "http://localhost:8000",
     "http://localhost:8080",
+    "https://jedah.netlify.app",
+    "http://jedah.netlify.app",
 )
 
 # Django Channels settings

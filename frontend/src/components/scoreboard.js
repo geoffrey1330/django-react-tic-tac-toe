@@ -22,7 +22,7 @@ export class Scoreboard extends React.Component {
 
   refreshList = () => {
     axios
-      .get("http://localhost:8000/api/historys")
+      .get("http://jedah.herokuapp.com/api/historys")
       .then((response) => {
         Promise.all(
           response.data.map((historyItem) => {

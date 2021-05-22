@@ -18,7 +18,7 @@ export class Board extends React.Component {
   };
 
   client = new W3CWebSocket(
-    "ws://127.0.0.1:8000/ws/play/" + this.state.room + "/"
+    "ws://jedah.herokuapp.com/ws/play/" + this.state.room + "/"
   );
 
   handleBoxClick(index) {
@@ -160,7 +160,7 @@ export class Board extends React.Component {
         winner === "x" ? this.state.playerOneName : this.state.playerTwoName
       }!`;
 
-      axios.post("http://localhost:8000/api/historys/", {
+      axios.post("http://jedah.herokuapp.com/api/historys/", {
         title: `${
           winner === "x" ? this.state.playerOneName : this.state.playerTwoName
         } won`,
@@ -169,7 +169,7 @@ export class Board extends React.Component {
     } else if (!winner && isFilled) {
       status = "Game drawn!";
 
-      axios.post("http://localhost:8000/api/historys/", {
+      axios.post("http://jedah.herokuapp.com/api/historys/", {
         title: `${"Game drawn"}`,
         text: "",
       });
