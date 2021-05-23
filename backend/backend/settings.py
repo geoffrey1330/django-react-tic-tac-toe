@@ -79,9 +79,9 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# WSGI_APPLICATION = 'tic_tac_toe.wsgi.application'
+
 # Channels
-ASGI_APPLICATION = "backend.asgi.application"
+ASGI_APPLICATION = "backend.routing.application"
 # CHANNEL_LAYERS = {
 #     'default': {
 #         # Method 1: Via redis lab
@@ -165,17 +165,17 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 # Django Channels settings
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels_redis.core.RedisChannelLayer",
-#         "CONFIG": {
-#             "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
-
-#         },
-#     },
-# }
 CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [('redis://localhost:6379')],
+
+        },
+    },
+}
+""" CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
-}
+} """

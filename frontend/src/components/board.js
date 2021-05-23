@@ -64,13 +64,14 @@ export class Board extends React.Component {
       history: history,
       xIsNext: !this.state.xIsNext,
     });
+    console.log(this.state.xIsNext);
   }
 
   handleBoardRestart = () => {
     this.setState({
       boxes: Array(9).fill(null),
       history: [],
-      xIsNext: true,
+      xIsNext: this.state.xIsNext,
     });
     /////////
 
@@ -142,7 +143,6 @@ export class Board extends React.Component {
               xIsNext: !message["xIsNext"],
               history: message["history"],
             }));
-            console.log(message["index"]);
           }
           break;
         default:
