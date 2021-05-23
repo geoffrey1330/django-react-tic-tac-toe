@@ -88,9 +88,9 @@ ASGI_APPLICATION = "backend.routing.application"
 #         'BACKEND': 'channels_redis.core.RedisChannelLayer',
 #         'CONFIG': {
 #             "hosts": [
-#                 'redis://h:le16Dn6dYwGHOZLF9vWxySxmQSIwE4Zz@redis-12573.c99.us-east-1-4.ec2.cloud.redislabs.com:12573'
+#                 ('redis://h:le16Dn6dYwGHOZLF9vWxySxmQSIwE4Zz@redis-12573.c99.us-east-1-4.ec2.cloud.redislabs.com:12573')
 #             ],
-#         }
+#         },
 
 #         # Method 2: Via local redis
 #         # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
@@ -102,7 +102,7 @@ ASGI_APPLICATION = "backend.routing.application"
 
 #         #     "BACKEND": "channels.layers.InMemoryChannelLayer",
 
-#     },
+#   },
 # }
 
 # Database
@@ -162,18 +162,31 @@ CORS_ORIGIN_WHITELIST = (
     "http://localhost:8080",
     "https://jedah.netlify.app",
     "http://jedah.netlify.app",
+
 )
 
 # Django Channels settings
+
+
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [('redis://localhost:6379')],
-
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
     },
 }
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [('redis://localhost:6379')],
+
+#         },
+#     },
+# }
+
+
 """ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
