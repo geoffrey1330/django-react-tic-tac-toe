@@ -2,7 +2,7 @@
   "name": "react-ts-tic-tac-toe",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://jedah.herokuapp.com",
+   
   "dependencies": {
     "axios": "^0.21.1",
     "pubnub": "^4.24.4",
