@@ -18,7 +18,7 @@ export class Board extends React.Component {
   };
 
   client = new W3CWebSocket(
-    "ws://localhost:8000/ws/play/" + this.state.room + "/"
+    "ws://127.0.0.1:8000/ws/play/" + this.state.room + "/"
   );
 
   handleBoxClick(index) {
