@@ -1,8 +1,8 @@
-# Tic Tack Toe game
+# A multiplayer realtime Tic Tac Toe game
 
 # [Play game](https://jedah.netlify.app/) 
 
-Tic Tack Toe game built with React and Django framework.
+A full stack multiplayer Tic Tac Toe game built with React, Django framework,django channels and redis.
 
 ### Features
 - 3x3 game grid
