@@ -87,7 +87,7 @@ export class Scoreboard extends React.Component {
     this.setState({
       roomcode: roomId,
     });
-    this.props.nameChangeHandler("roomcode", roomId);
+    this.props.nameChangeHandler("roomcode", roomId, true);
   };
 
   // The 'Join' button was pressed
@@ -115,7 +115,7 @@ export class Scoreboard extends React.Component {
         this.setState({
           roomcode: result.value,
         });
-        this.props.nameChangeHandler("roomcode", result.value);
+        this.props.nameChangeHandler("roomcode", result.value, false);
       }
     });
   };
@@ -162,8 +162,6 @@ export class Scoreboard extends React.Component {
               : "scoreboard__name-box"
           }
         >
-          <label htmlFor="playerTwoName">gameid:</label>
-
           <input
             id="roomcode"
             className={

@@ -14,12 +14,15 @@ class App extends React.Component {
       ? JSON.parse(localStorage.getItem("darkmode"))
       : false,
     roomcode: "",
+    joined: true,
   };
 
-  handlePlayerNameChange = (stateKey, stateValue) => {
+  handlePlayerNameChange = (stateKey, stateValue, join) => {
     this.setState({
       [stateKey]: stateValue,
+      joined: join,
     });
+    console.log(this.state.joined);
   };
 
   handleDarkModeToggle = () => {
@@ -54,6 +57,7 @@ class App extends React.Component {
               onDarkModeToggle={this.handleDarkModeToggle}
               darkMode={this.state.darkMode}
               roomcode={this.state.roomcode}
+              joined={this.state.joined}
             />
           )}
         />

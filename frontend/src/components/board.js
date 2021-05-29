@@ -15,6 +15,8 @@ export class Board extends React.Component {
     playerTwoName: this.props.state.playerTwoName,
     xIsNext: true,
     room: this.props.state.roomcode,
+    joined: this.props.state.joineds,
+    buttonDisabled: false,
   };
 
   client = new W3CWebSocket(
@@ -22,7 +24,6 @@ export class Board extends React.Component {
   );
 
   handleBoxClick(index) {
-    console.log(this.state.room);
     const boxes = this.state.boxes.slice();
 
     let history = this.state.history;
@@ -40,31 +41,46 @@ export class Board extends React.Component {
     history.push(
       this.state.xIsNext ? this.state.playerOneName : this.state.playerTwoName
     );
-
+    ///////////////////////////////////////
+    // console.log(this.props.state.joined + "bbbbbbbb");
+    // console.log(this.state.xIsNext + "ccccccc");
+    // if (this.state.xIsNext === this.props.state.joined) {
+    //   this.setState({
+    //     buttonDisabled: true,
+    //   });
+    //   console.log(this.state.xIsNext + "dddddd");
+    // } else {
+    //   this.setState({
+    //     buttonDisabled: false,
+    //   });
+    //   console.log(this.state.xIsNext + "eeeeeeee");
+    // }
+    //////////////////////////////////////
     /////////
+    if (this.state.xIsNext === this.props.state.joined) {
+      let data = {
+        event: "MOVE",
+        message: {
+          index: boxes,
+          player: this.state.xIsNext
+            ? this.state.playerOneName
+            : this.state.playerTwoName,
 
-    let data = {
-      event: "MOVE",
-      message: {
-        index: boxes,
-        player: this.state.xIsNext
-          ? this.state.playerOneName
-          : this.state.playerTwoName,
+          xIsNext: this.state.xIsNext,
+          history: this.state.history,
+          //joined: this.state.joined ? true : false,
+        },
+      };
 
-        xIsNext: this.state.xIsNext,
-        history: this.state.history,
-      },
-    };
+      this.client.send(JSON.stringify(data));
+      ///////
 
-    this.client.send(JSON.stringify(data));
-    ///////
-
-    this.setState({
-      boxes: boxes,
-      history: history,
-      xIsNext: !this.state.xIsNext,
-    });
-    console.log(this.state.xIsNext);
+      this.setState({
+        boxes: boxes,
+        history: history,
+        xIsNext: !this.state.xIsNext,
+      });
+    }
   }
 
   handleBoardRestart = () => {
@@ -137,11 +153,12 @@ export class Board extends React.Component {
             // });
 
             //document.getElementById("alert_move").style.display = "inline";
-
+            console.log(this.state.joined);
             this.setState((state) => ({
               boxes: message["index"],
               xIsNext: !message["xIsNext"],
               history: message["history"],
+              //joined: message["joined"],
             }));
           }
           break;
@@ -224,18 +241,21 @@ export class Board extends React.Component {
                 value={this.state.boxes[0]}
                 onClick={() => this.handleBoxClick(0)}
                 darkMode={this.props.darkMode}
+                buttonDisabled={this.state.buttonDisabled}
               />
 
               <Box
                 value={this.state.boxes[1]}
                 onClick={() => this.handleBoxClick(1)}
                 darkMode={this.props.darkMode}
+                buttonDisabled={this.state.buttonDisabled}
               />
 
               <Box
                 value={this.state.boxes[2]}
                 onClick={() => this.handleBoxClick(2)}
                 darkMode={this.props.darkMode}
+                buttonDisabled={this.state.buttonDisabled}
               />
             </div>
 
@@ -244,18 +264,21 @@ export class Board extends React.Component {
                 value={this.state.boxes[3]}
                 onClick={() => this.handleBoxClick(3)}
                 darkMode={this.props.darkMode}
+                buttonDisabled={this.state.buttonDisabled}
               />
 
               <Box
                 value={this.state.boxes[4]}
                 onClick={() => this.handleBoxClick(4)}
                 darkMode={this.props.darkMode}
+                buttonDisabled={this.state.buttonDisabled}
               />
 
               <Box
                 value={this.state.boxes[5]}
                 onClick={() => this.handleBoxClick(5)}
                 darkMode={this.props.darkMode}
+                buttonDisabled={this.state.buttonDisabled}
               />
             </div>
 
@@ -264,18 +287,21 @@ export class Board extends React.Component {
                 value={this.state.boxes[6]}
                 onClick={() => this.handleBoxClick(6)}
                 darkMode={this.props.darkMode}
+                buttonDisabled={this.state.buttonDisabled}
               />
 
               <Box
                 value={this.state.boxes[7]}
                 onClick={() => this.handleBoxClick(7)}
                 darkMode={this.props.darkMode}
+                buttonDisabled={this.state.buttonDisabled}
               />
 
               <Box
                 value={this.state.boxes[8]}
                 onClick={() => this.handleBoxClick(8)}
                 darkMode={this.props.darkMode}
+                buttonDisabled={this.state.buttonDisabled}
               />
             </div>
           </div>
